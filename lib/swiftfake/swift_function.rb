@@ -1,9 +1,14 @@
 module Swiftfake
   class SwiftFunction
-    attr_reader :full_name
+    Argument = Struct.new(:name, :type)
 
-    def initialize(full_name:)
+    attr_reader :full_name, :name, :access, :arguments
+
+    def initialize(full_name:, name:, access:, arguments:)
       @full_name = full_name
+      @name = name
+      @access = access
+      @arguments = arguments
     end
   end
 end

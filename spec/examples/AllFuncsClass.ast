@@ -1,0 +1,17 @@
+
+public class AllFuncsClass {
+  private final class func staticPrivateFunc()
+  internal final class func staticInternalFunc()
+  public final class func staticPublicFunc()
+  private class func classPrivateFunc()
+  internal class func classInternalFunc()
+  public class func classPublicFunc()
+  final private func finalPrivateFunc()
+  final internal func finalInternalFunc()
+  final public func finalPublicFunc()
+  private func privateFunc()
+  internal func internalFunc()
+  public func publicFunc()
+  @objc deinit 
+  internal init()
+}

@@ -1,0 +1,14 @@
+
+internal class SingleArgFuncs {
+  internal func withString(value: String)
+  internal func withInt(value: Int)
+  internal func withArray(value: [String])
+  internal func withDictionary(value: [String : AnyObject])
+  internal func withObject(value: SomeObject)
+  internal class SomeObject {
+    @objc deinit 
+    internal init()
+  }
+  @objc deinit 
+  internal init()
+}
