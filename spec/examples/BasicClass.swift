@@ -1,0 +1,6 @@
+class BasicClass {
+
+    func sayHi() {
+    }
+
+}

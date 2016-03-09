@@ -1,0 +1,6 @@
+
+internal class BasicClass {
+  internal func sayHi()
+  @objc deinit 
+  internal init()
+}
