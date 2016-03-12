@@ -1,7 +1,21 @@
 <%= fake_class_signature %> {
-  <% functions.each do |func| -%>
-    <%= function_signature(func) %> {
 
+<% functions.each do |f| -%>
+    <%= function_signature(f) %> {
+        <%= function_call_count(f) %> += 1
+        <% if function_has_args?(f) %><%= function_args_store_append(f) %><% end %>
+        <% if function_returns?(f) %><%= function_return_value(f) %><% end %>
     }
-  <% end %>
+
+<% end %>
+
+    // MARK: - Fake Helpers
+
+<% functions.each do |f| -%>
+    <%= function_call_count_declaration(f) %>
+<% end %>
+
+<% functions_with_args.each do |f| -%>
+    <%= function_args_store_declaration(f) %>
+<% end %>
 }
