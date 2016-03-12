@@ -61,6 +61,32 @@ describe Swiftfake::AstParser::FunctionsParser do
       end
     end
 
+    describe 'function return value' do
+      def parse_return(line)
+        described_class.new([line]).parse.first.return_value
+      end
+
+      it 'returns nil if the function has no return value' do
+        value = parse_return('internal func myFunc(arg1: String)')
+        expect(value).to be_nil
+      end
+
+      it 'parses single return values' do
+        value = parse_return('internal func myFunc(arg1: String) -> String')
+        expect(value).to eq('String')
+      end
+
+      it 'parses optional-type return values' do
+        value = parse_return('internal func myFuncOptionalReturn(arg1: String) -> String?')
+        expect(value).to eq('String?')
+      end
+
+      it 'parses tuple return values' do
+        value = parse_return('internal func myFuncReturningTuple() -> (val1: String, val2: String)')
+        expect(value).to eq('(val1: String, val2: String)')
+      end
+    end
+
     describe 'filtering of functions' do
       it 'only returns internal / public functions which can be overriden' do
         wanted_funcs = [

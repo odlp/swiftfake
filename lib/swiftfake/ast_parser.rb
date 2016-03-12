@@ -44,12 +44,14 @@ module Swiftfake
         overridable_functions.map do |line|
           /func (?<name>.*)\(/ =~ line
           /(?<access>public|internal|private)/ =~ line
+          /->\s(?<return_value>.+)$/ =~ line
 
           SwiftFunction.new(
             full_name: line.strip,
             name: name,
             access: access,
-            arguments: parse_args(line)
+            arguments: parse_args(line),
+            return_value: return_value
           )
         end
       end
