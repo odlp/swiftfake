@@ -30,6 +30,12 @@ describe Swiftfake::AstParser::FunctionsParser do
         described_class.new([line]).parse.first.arguments.first
       end
 
+      it 'parses no arguments' do
+        line = 'internal func internalFunc()'
+        args = described_class.new([line]).parse.first.arguments
+        expect(args).to eq([])
+      end
+
       it 'parses String attributes' do
         arg = parse_first_arg('internal func withString(value: String)')
         expect(arg.name).to eq('value')

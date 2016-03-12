@@ -2,4 +2,6 @@
 
 require "swiftfake"
 
-puts "Ready to fake"
+input_file = ARGF.argv[0]
+runner = Swiftfake::Runner.new(args: {input: input_file})
+puts runner.run

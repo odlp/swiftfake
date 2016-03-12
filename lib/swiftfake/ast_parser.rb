@@ -6,11 +6,8 @@ module Swiftfake
 
     attr_reader :raw_ast
 
-    def initialize(raw_ast)
+    def parse(raw_ast)
       @raw_ast = raw_ast
-    end
-
-    def parse
       klass_attributes = parse_klass_attributes
       klass_attributes[:functions] = parse_functions
       SwiftClass.new(klass_attributes)
