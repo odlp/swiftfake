@@ -1,10 +1,10 @@
 <%= fake_class_signature %> {
 
 <% functions.each do |f| -%>
-    <%= function_signature(f) %> {
-        <%= function_call_count(f) %> += 1
-        <% if function_has_args?(f) %><%= function_args_store_append(f) %><% end %>
-        <% if function_returns?(f) %><%= function_return_value(f) %><% end %>
+    <%= f.signature %> {
+        <%= f.call_count %> += 1
+        <% if f.has_args? %><%= f.args_store_append %><% end %>
+        <% if f.returns? %><%= f.return_value_declaration %><% end %>
     }
 
 <% end %>
@@ -12,10 +12,10 @@
     // MARK: - Fake Helpers
 
 <% functions.each do |f| -%>
-    <%= function_call_count_declaration(f) %>
+    <%= f.call_count_declaration %>
 <% end %>
 
 <% functions_with_args.each do |f| -%>
-    <%= function_args_store_declaration(f) %>
+    <%= f.args_store_declaration %>
 <% end %>
 }
