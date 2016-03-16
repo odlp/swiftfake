@@ -9,8 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["odlp"]
   spec.email         = ["oliverp@gmail.com"]
 
-  spec.summary       = "Summary"
-  spec.description   = "Description"
+  spec.summary       = "Generate test fakes from Swift code."
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
