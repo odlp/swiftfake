@@ -70,4 +70,29 @@ describe Swiftfake::Presenter do
     end
   end
 
+  describe '#functions_with_return_value' do
+    let(:functions) {[
+      Swiftfake::SwiftFunction.new(
+        full_name: 'internal func internalFunc()',
+        name: 'internalFunc',
+        access: 'internal',
+        arguments: [],
+        return_value: nil
+      ),
+      Swiftfake::SwiftFunction.new(
+        full_name: 'internal func internalFunc() -> String',
+        name: 'internalFunc',
+        access: 'internal',
+        arguments: [],
+        return_value: 'String'
+      )
+    ]}
+
+    subject { presenter.functions_with_return_value }
+
+    it 'selects functions with arguments' do
+      expect(subject).to eq [functions.last]
+    end
+  end
+
 end

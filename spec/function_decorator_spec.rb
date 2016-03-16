@@ -226,8 +226,70 @@ describe Swiftfake::FunctionDecorator do
         return_value: 'String')
     }
 
-    it 'prepends "return" and instantiates the object' do
-      expect(subject).to eq 'return String()'
+    it 'returns the xReturnValue property' do
+      expect(subject).to eq 'return internalFuncReturnValue'
+    end
+  end
+
+  describe '#return_value_store_declaration' do
+    subject { decorated.return_value_store_declaration }
+
+    let(:function) {
+      Swiftfake::SwiftFunction.new(
+        full_name: 'internal func internalFunc() -> String',
+        name: 'internalFunc',
+        access: 'internal',
+        arguments: [],
+        return_value: 'String')
+    }
+
+    it 'declares an variable with an freshly initialised return value' do
+      expect(subject).to eq 'var internalFuncReturnValue = String()'
+    end
+
+    context 'return value is a named tuple' do
+      let(:function) {
+        Swiftfake::SwiftFunction.new(
+          full_name: 'internal func internalFunc() -> (val1: String, val2: String)',
+          name: 'internalFunc',
+          access: 'internal',
+          arguments: [],
+          return_value: '(val1: String, val2: String)')
+      }
+
+      it 'correctly instantiates the tuple values' do
+        expect(subject).to eq 'var internalFuncReturnValue = (val1: String(), val2: String())'
+      end
+    end
+
+    context 'return value is a plain tuple' do
+      let(:function) {
+        Swiftfake::SwiftFunction.new(
+          full_name: 'internal func internalFunc() -> (String, String)',
+          name: 'internalFunc',
+          access: 'internal',
+          arguments: [],
+          return_value: '(String, String)')
+      }
+
+      it 'correctly instantiates the tuple values' do
+        expect(subject).to eq 'var internalFuncReturnValue = (String(), String())'
+      end
+    end
+
+    context 'return value for a class method call' do
+      let(:function) {
+        Swiftfake::SwiftFunction.new(
+          full_name: 'internal class func internalFunc() -> String',
+          name: 'internalFunc',
+          access: 'internal',
+          arguments: [],
+          return_value: 'String')
+      }
+
+      it 'declares a static variable with an freshly initialised return value' do
+        expect(subject).to eq 'static var internalFuncReturnValue = String()'
+      end
     end
   end
 end

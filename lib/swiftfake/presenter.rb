@@ -21,7 +21,11 @@ module Swiftfake
     end
 
     def functions_with_args
-      functions.select {|f| f.has_args? }
+      functions.select(&:has_args?)
+    end
+
+    def functions_with_return_value
+      functions.select(&:returns?)
     end
   end
 end

@@ -18,4 +18,8 @@
 <% functions_with_args.each do |f| -%>
     <%= f.args_store_declaration %>
 <% end %>
+
+<% functions_with_return_value.each do |f| -%>
+    <%= f.return_value_store_declaration %>
+<% end %>
 }

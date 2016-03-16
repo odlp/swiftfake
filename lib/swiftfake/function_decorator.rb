@@ -37,7 +37,11 @@ module Swiftfake
     end
 
     def return_value_declaration
-      "return #{return_value}()"
+      "return #{return_value_var_name}"
+    end
+
+    def return_value_store_declaration
+      "#{var_prefix} #{return_value_var_name} = #{return_value_initialized}"
     end
 
     private
@@ -63,6 +67,22 @@ module Swiftfake
         .map{ |a| "#{a.name}: #{a.type}" }
         .join(', ')
       "(#{args})"
+    end
+
+    def return_value_var_name
+      "#{name}ReturnValue"
+    end
+
+    def return_value_initialized
+      return "#{return_value}()" unless return_value_is_tuple?
+
+      tuple = return_value.gsub(')', '())')
+      tuple.gsub(',', '(),')
+    end
+
+    def return_value_is_tuple?
+      reg = /^\(.+,.+\)$/
+      (return_value =~ reg) == 0
     end
   end
 end
