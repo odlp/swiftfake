@@ -4,18 +4,20 @@ require 'swiftfake/swift_function'
 
 describe Swiftfake::FunctionDecorator do
 
-  let(:function) {
+  def create_function(full_name: 'internal func internalFunc()', name: 'internalFunc', access: 'internal', arguments: [], return_value: nil)
     Swiftfake::SwiftFunction.new(
-      full_name: 'internal func internalFunc()',
-      name: 'internalFunc',
-      access: 'internal',
-      arguments: [],
-      return_value: nil
-  )}
+      full_name: full_name,
+      name: name,
+      access: access,
+      arguments: arguments,
+      return_value: return_value
+    )
+  end
 
   let(:decorated) { function.extend(described_class) }
 
   describe '#signature' do
+    let(:function) { create_function(full_name: 'internal func internalFunc()') }
     subject { decorated.signature }
 
     it 'prepends "override" to the original signature' do
@@ -24,6 +26,7 @@ describe Swiftfake::FunctionDecorator do
   end
 
   describe '#call_count' do
+    let(:function) { create_function(name: 'internalFunc') }
     subject { decorated.call_count }
 
     it 'appends "CallCount" to the function name' do
@@ -32,16 +35,8 @@ describe Swiftfake::FunctionDecorator do
   end
 
   describe '#call_count_declaration' do
+    let(:function) { create_function(name: 'internalFunc') }
     subject { decorated.call_count_declaration }
-
-    let(:function) {
-      Swiftfake::SwiftFunction.new(
-        full_name: 'internal func internalFunc()',
-        name: 'internalFunc',
-        access: 'internal',
-        arguments: [],
-        return_value: nil)
-    }
 
     it 'set the initial call count to zero' do
       expect(subject).to eq('var internalFuncCallCount = 0')
@@ -49,12 +44,10 @@ describe Swiftfake::FunctionDecorator do
 
     context 'class method' do
       let(:function) {
-        Swiftfake::SwiftFunction.new(
+        create_function(
           full_name: 'internal class func internalFunc()',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [],
-          return_value: nil)
+          name: 'internalFunc'
+        )
       }
 
       it 'delcares a static var' do
@@ -67,28 +60,12 @@ describe Swiftfake::FunctionDecorator do
     subject { decorated.has_args? }
 
     context 'no arguments' do
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal func internalFunc()',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [],
-          return_value: nil)
-      }
-
+      let(:function) { create_function(arguments: []) }
       it { is_expected.to be false }
     end
 
     context 'has arguments' do
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal func internalFunc()',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: ['Some thing'],
-          return_value: nil)
-      }
-
+      let(:function) { create_function(arguments: ['Some thing']) }
       it { is_expected.to be true }
     end
   end
@@ -99,14 +76,7 @@ describe Swiftfake::FunctionDecorator do
     let(:arg1) { Swiftfake::SwiftFunction::Argument.new('arg1', 'String') }
 
     context 'single argument' do
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal func internalFunc()',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [arg1],
-          return_value: nil)
-      }
+      let(:function) { create_function(arguments: [arg1]) }
 
       it 'appends the argument directly' do
         expect(subject).to eq 'internalFuncArgsForCall.append(arg1)'
@@ -115,15 +85,7 @@ describe Swiftfake::FunctionDecorator do
 
     context 'multiple arguments' do
       let(:arg2) { Swiftfake::SwiftFunction::Argument.new('arg2', 'Int') }
-
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal func internalFunc()',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [arg1, arg2],
-          return_value: nil)
-      }
+      let(:function) { create_function(arguments: [arg1, arg2]) }
 
       it 'appends an argument tuple' do
         expect(subject).to eq 'internalFuncArgsForCall.append((arg1, arg2))'
@@ -137,14 +99,7 @@ describe Swiftfake::FunctionDecorator do
     let(:arg1) { Swiftfake::SwiftFunction::Argument.new('arg1', 'String') }
 
     context 'single argument' do
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal func internalFunc()',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [arg1],
-          return_value: nil)
-      }
+      let(:function) { create_function(arguments: [arg1]) }
 
       it 'declares an array of the argument type' do
         expect(subject).to eq 'var internalFuncArgsForCall = [String]()'
@@ -153,15 +108,7 @@ describe Swiftfake::FunctionDecorator do
 
     context 'multiple arguments' do
       let(:arg2) { Swiftfake::SwiftFunction::Argument.new('arg2', 'Int') }
-
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal func internalFunc()',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [arg1, arg2],
-          return_value: nil)
-      }
+      let(:function) { create_function(arguments: [arg1, arg2]) }
 
       it 'declares an array of tuples with all the arguments' do
         expect(subject).to eq 'var internalFuncArgsForCall = [(arg1: String, arg2: Int)]()'
@@ -169,13 +116,9 @@ describe Swiftfake::FunctionDecorator do
     end
 
     context 'arguments for a class method call' do
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal class func internalFunc()',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [arg1],
-          return_value: nil)
+      let(:function) { create_function(
+        full_name: 'internal class func internalFunc()',
+        arguments: [arg1])
       }
 
       it 'declares an array of the argument type' do
@@ -188,28 +131,12 @@ describe Swiftfake::FunctionDecorator do
     subject { decorated.returns? }
 
     context 'has return value' do
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal func internalFunc() -> String',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [],
-          return_value: 'String')
-      }
-
+      let(:function) { create_function(return_value: 'String') }
       it { is_expected.to be true }
     end
 
     context 'has no return value' do
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal func internalFunc()',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [],
-          return_value: nil)
-      }
-
+      let(:function) { create_function(return_value: nil) }
       it { is_expected.to be false }
     end
   end
@@ -217,13 +144,9 @@ describe Swiftfake::FunctionDecorator do
   describe '#return_value_declaration' do
     subject { decorated.return_value_declaration }
 
-    let(:function) {
-      Swiftfake::SwiftFunction.new(
-        full_name: 'internal func internalFunc() -> String',
-        name: 'internalFunc',
-        access: 'internal',
-        arguments: [],
-        return_value: 'String')
+    let(:function) { create_function(
+      name: 'internalFunc',
+      return_value: 'String')
     }
 
     it 'returns the xReturnValue property' do
@@ -234,13 +157,9 @@ describe Swiftfake::FunctionDecorator do
   describe '#return_value_store_declaration' do
     subject { decorated.return_value_store_declaration }
 
-    let(:function) {
-      Swiftfake::SwiftFunction.new(
-        full_name: 'internal func internalFunc() -> String',
-        name: 'internalFunc',
-        access: 'internal',
-        arguments: [],
-        return_value: 'String')
+    let(:function) { create_function(
+      name: 'internalFunc',
+      return_value: 'String')
     }
 
     it 'declares an variable with an freshly initialised return value' do
@@ -248,13 +167,9 @@ describe Swiftfake::FunctionDecorator do
     end
 
     context 'return value is a named tuple' do
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal func internalFunc() -> (val1: String, val2: String)',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [],
-          return_value: '(val1: String, val2: String)')
+      let(:function) { create_function(
+        name: 'internalFunc',
+        return_value: '(val1: String, val2: String)')
       }
 
       it 'correctly instantiates the tuple values' do
@@ -263,13 +178,9 @@ describe Swiftfake::FunctionDecorator do
     end
 
     context 'return value is a plain tuple' do
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal func internalFunc() -> (String, String)',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [],
-          return_value: '(String, String)')
+      let(:function) { create_function(
+        name: 'internalFunc',
+        return_value: '(String, String)')
       }
 
       it 'correctly instantiates the tuple values' do
@@ -278,13 +189,9 @@ describe Swiftfake::FunctionDecorator do
     end
 
     context 'return value for a class method call' do
-      let(:function) {
-        Swiftfake::SwiftFunction.new(
-          full_name: 'internal class func internalFunc() -> String',
-          name: 'internalFunc',
-          access: 'internal',
-          arguments: [],
-          return_value: 'String')
+      let(:function) { create_function(
+        full_name: 'internal class func internalFunc() -> String',
+        return_value: 'String')
       }
 
       it 'declares a static variable with an freshly initialised return value' do
