@@ -1,0 +1,32 @@
+{
+  "key.substructure" : [
+    {
+      "key.kind" : "source.lang.swift.decl.class",
+      "key.offset" : 0,
+      "key.nameoffset" : 6,
+      "key.namelength" : 10,
+      "key.bodyoffset" : 18,
+      "key.bodylength" : 28,
+      "key.accessibility" : "source.lang.swift.accessibility.internal",
+      "key.substructure" : [
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.offset" : 24,
+          "key.nameoffset" : 29,
+          "key.namelength" : 7,
+          "key.bodyoffset" : 38,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.internal",
+          "key.length" : 20,
+          "key.name" : "sayHi()"
+        }
+      ],
+      "key.name" : "BasicClass",
+      "key.runtime_name" : "_TtC8__main__10BasicClass",
+      "key.length" : 47
+    }
+  ],
+  "key.offset" : 0,
+  "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
+  "key.length" : 48
+}

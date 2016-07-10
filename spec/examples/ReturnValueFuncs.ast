@@ -1,8 +1,0 @@
-
-internal class ReturnValueFuncs {
-  internal func myFunc(arg1: String) -> String
-  internal func myFuncOptionalReturn(arg1: String) -> String?
-  internal func myFuncReturningTuple() -> (val1: String, val2: String)
-  @objc deinit 
-  internal init()
-}

@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'swiftfake/ast_parser'
+require 'swiftfake/source_kit_parser'
 
-describe Swiftfake::AstParser::FunctionsParser do
+describe Swiftfake::SourceKitParser::FunctionsParser do
 
   def parse_line(line)
     described_class.new([line]).parse.first
@@ -22,6 +22,14 @@ describe Swiftfake::AstParser::FunctionsParser do
 
       it 'has an access level' do
         expect(subject.access).to eq 'internal'
+      end
+
+      context 'access level not defined' do
+        let(:line) { 'func internalFunc()'  }
+
+        it 'defaults to internal' do
+          expect(subject.access).to eq 'internal'
+        end
       end
     end
 

@@ -1,0 +1,76 @@
+{
+  "key.substructure" : [
+    {
+      "key.kind" : "source.lang.swift.decl.class",
+      "key.offset" : 0,
+      "key.nameoffset" : 6,
+      "key.namelength" : 16,
+      "key.bodyoffset" : 24,
+      "key.bodylength" : 258,
+      "key.accessibility" : "source.lang.swift.accessibility.internal",
+      "key.substructure" : [
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.offset" : 30,
+          "key.nameoffset" : 35,
+          "key.namelength" : 20,
+          "key.bodyoffset" : 67,
+          "key.bodylength" : 26,
+          "key.accessibility" : "source.lang.swift.accessibility.internal",
+          "key.substructure" : [
+            {
+              "key.kind" : "source.lang.swift.decl.var.parameter",
+              "key.offset" : 42,
+              "key.nameoffset" : 0,
+              "key.namelength" : 0,
+              "key.length" : 12,
+              "key.typename" : "String",
+              "key.name" : "arg1"
+            }
+          ],
+          "key.name" : "myFunc(_:)",
+          "key.length" : 64
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.offset" : 100,
+          "key.nameoffset" : 105,
+          "key.namelength" : 34,
+          "key.bodyoffset" : 152,
+          "key.bodylength" : 24,
+          "key.accessibility" : "source.lang.swift.accessibility.internal",
+          "key.substructure" : [
+            {
+              "key.kind" : "source.lang.swift.decl.var.parameter",
+              "key.offset" : 126,
+              "key.nameoffset" : 0,
+              "key.namelength" : 0,
+              "key.length" : 12,
+              "key.typename" : "String",
+              "key.name" : "arg1"
+            }
+          ],
+          "key.name" : "myFuncOptionalReturn(_:)",
+          "key.length" : 77
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.offset" : 183,
+          "key.nameoffset" : 188,
+          "key.namelength" : 22,
+          "key.bodyoffset" : 244,
+          "key.bodylength" : 35,
+          "key.accessibility" : "source.lang.swift.accessibility.internal",
+          "key.length" : 97,
+          "key.name" : "myFuncReturningTuple()"
+        }
+      ],
+      "key.name" : "ReturnValueFuncs",
+      "key.runtime_name" : "_TtC8__main__16ReturnValueFuncs",
+      "key.length" : 283
+    }
+  ],
+  "key.offset" : 0,
+  "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
+  "key.length" : 284
+}

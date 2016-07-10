@@ -1,14 +1,14 @@
 require 'swiftfake/version'
-require 'swiftfake/compiler_interface'
-require 'swiftfake/ast_parser'
+require 'swiftfake/source_reader'
+require 'swiftfake/source_kit_parser'
 require 'swiftfake/presenter'
 require 'swiftfake/renderer'
 
 module Swiftfake
 
-  Config = Struct.new(:compiler_interface, :parser_klass, :presenter_klass, :renderer) do
-    def self.create(compiler_interface: CompilerInterface.new, parser_klass: AstParser, presenter_klass: Presenter, renderer: Renderer.new)
-       self.new(compiler_interface, parser_klass, presenter_klass, renderer)
+  Config = Struct.new(:source_reader, :parser_klass, :presenter_klass, :renderer) do
+    def self.create(source_reader: SourceReader.new, parser_klass: SourceKitParser, presenter_klass: Presenter, renderer: Renderer.new)
+       self.new(source_reader, parser_klass, presenter_klass, renderer)
     end
   end
 
@@ -21,9 +21,9 @@ module Swiftfake
     end
 
     def run
-      raw_ast = config.compiler_interface.generate_ast(args[:input])
+      source_file, structure_json = config.source_reader.read_file(args[:input])
       parser = config.parser_klass.new
-      swift_class = parser.parse(raw_ast)
+      swift_class = parser.parse(source_file, structure_json)
       presenter = config.presenter_klass.new(swift_class)
       config.renderer.output(presenter)
     end

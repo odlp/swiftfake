@@ -5,12 +5,14 @@ describe Swiftfake::Runner do
 
   describe '#run' do
 
-    let(:ast_tree) { 'A tree' }
-    let(:swift_class) { instance_double(Swiftfake::SwiftClass) }
-    let(:compiler_interface) { instance_double(Swiftfake::CompilerInterface, generate_ast: ast_tree) }
+    let(:source_file) { 'The source file contents' }
+    let(:structure_json) { '{}' }
 
-    let(:parser) { instance_double(Swiftfake::AstParser, parse: swift_class) }
-    let(:parser_klass) { class_double(Swiftfake::AstParser, new: parser) }
+    let(:swift_class) { instance_double(Swiftfake::SwiftClass) }
+    let(:source_reader) { instance_double(Swiftfake::SourceReader, read_file: [source_file, structure_json]) }
+
+    let(:parser_klass) { class_double(Swiftfake::SourceKitParser, new: parser) }
+    let(:parser) { instance_double(Swiftfake::SourceKitParser, parse: swift_class) }
     let(:presenter) { instance_double(Swiftfake::Presenter, get_binding: "binding") }
     let(:presenter_klass) { class_double(Swiftfake::Presenter, new: presenter) }
     let(:renderer) { instance_double(Swiftfake::Renderer, output: nil) }
@@ -21,7 +23,7 @@ describe Swiftfake::Runner do
       }
 
       config = Swiftfake::Config.create(
-        compiler_interface: compiler_interface,
+        source_reader: source_reader,
         parser_klass: parser_klass,
         presenter_klass: presenter_klass,
         renderer: renderer
@@ -30,14 +32,14 @@ describe Swiftfake::Runner do
       runner = described_class.new(args: args, config: config)
       runner.run
 
-      expect(compiler_interface)
-        .to have_received(:generate_ast).with(args[:input])
+      expect(source_reader)
+        .to have_received(:read_file).with(args[:input])
 
       expect(parser_klass)
         .to have_received(:new)
 
       expect(parser)
-        .to have_received(:parse).with(ast_tree)
+        .to have_received(:parse).with(source_file, structure_json)
 
       expect(presenter_klass)
         .to have_received(:new).with(swift_class)

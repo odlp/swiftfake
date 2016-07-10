@@ -1,0 +1,214 @@
+{
+  "key.substructure" : [
+    {
+      "key.kind" : "source.lang.swift.decl.class",
+      "key.offset" : 7,
+      "key.nameoffset" : 13,
+      "key.namelength" : 13,
+      "key.bodyoffset" : 28,
+      "key.bodylength" : 711,
+      "key.accessibility" : "source.lang.swift.accessibility.public",
+      "key.substructure" : [
+        {
+          "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+          "key.offset" : 36,
+          "key.nameoffset" : 0,
+          "key.namelength" : 0,
+          "key.length" : 24
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.static",
+          "key.offset" : 66,
+          "key.attributes" : [
+            {
+              "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+            }
+          ],
+          "key.nameoffset" : 86,
+          "key.namelength" : 19,
+          "key.bodyoffset" : 107,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.private",
+          "key.length" : 47,
+          "key.name" : "staticPrivateFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.static",
+          "key.offset" : 119,
+          "key.nameoffset" : 140,
+          "key.namelength" : 20,
+          "key.bodyoffset" : 162,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.internal",
+          "key.length" : 49,
+          "key.name" : "staticInternalFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.static",
+          "key.offset" : 174,
+          "key.nameoffset" : 193,
+          "key.namelength" : 18,
+          "key.bodyoffset" : 213,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.public",
+          "key.length" : 45,
+          "key.name" : "staticPublicFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+          "key.offset" : 227,
+          "key.nameoffset" : 0,
+          "key.namelength" : 0,
+          "key.length" : 23
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.class",
+          "key.offset" : 256,
+          "key.attributes" : [
+            {
+              "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+            }
+          ],
+          "key.nameoffset" : 275,
+          "key.namelength" : 18,
+          "key.bodyoffset" : 295,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.private",
+          "key.length" : 45,
+          "key.name" : "classPrivateFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.class",
+          "key.offset" : 307,
+          "key.nameoffset" : 327,
+          "key.namelength" : 19,
+          "key.bodyoffset" : 348,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.internal",
+          "key.length" : 47,
+          "key.name" : "classInternalFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.class",
+          "key.offset" : 360,
+          "key.nameoffset" : 378,
+          "key.namelength" : 17,
+          "key.bodyoffset" : 397,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.public",
+          "key.length" : 43,
+          "key.name" : "classPublicFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+          "key.offset" : 411,
+          "key.nameoffset" : 0,
+          "key.namelength" : 0,
+          "key.length" : 23
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.offset" : 454,
+          "key.attributes" : [
+            {
+              "key.attribute" : "source.decl.attribute.final"
+            },
+            {
+              "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+            }
+          ],
+          "key.nameoffset" : 459,
+          "key.namelength" : 18,
+          "key.bodyoffset" : 479,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.private",
+          "key.length" : 31,
+          "key.name" : "finalPrivateFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.offset" : 506,
+          "key.attributes" : [
+            {
+              "key.attribute" : "source.decl.attribute.final"
+            }
+          ],
+          "key.nameoffset" : 511,
+          "key.namelength" : 19,
+          "key.bodyoffset" : 532,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.internal",
+          "key.length" : 32,
+          "key.name" : "finalInternalFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.offset" : 557,
+          "key.attributes" : [
+            {
+              "key.attribute" : "source.decl.attribute.final"
+            }
+          ],
+          "key.nameoffset" : 562,
+          "key.namelength" : 17,
+          "key.bodyoffset" : 581,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.public",
+          "key.length" : 30,
+          "key.name" : "finalPublicFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+          "key.offset" : 595,
+          "key.nameoffset" : 0,
+          "key.namelength" : 0,
+          "key.length" : 23
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.offset" : 632,
+          "key.attributes" : [
+            {
+              "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+            }
+          ],
+          "key.nameoffset" : 637,
+          "key.namelength" : 13,
+          "key.bodyoffset" : 652,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.private",
+          "key.length" : 26,
+          "key.name" : "privateFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.offset" : 673,
+          "key.nameoffset" : 678,
+          "key.namelength" : 14,
+          "key.bodyoffset" : 694,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.internal",
+          "key.length" : 27,
+          "key.name" : "internalFunc()"
+        },
+        {
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.offset" : 713,
+          "key.nameoffset" : 718,
+          "key.namelength" : 12,
+          "key.bodyoffset" : 732,
+          "key.bodylength" : 5,
+          "key.accessibility" : "source.lang.swift.accessibility.public",
+          "key.length" : 25,
+          "key.name" : "publicFunc()"
+        }
+      ],
+      "key.name" : "AllFuncsClass",
+      "key.runtime_name" : "_TtC8__main__13AllFuncsClass",
+      "key.length" : 733
+    }
+  ],
+  "key.offset" : 0,
+  "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
+  "key.length" : 741
+}
