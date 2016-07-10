@@ -1,16 +1,16 @@
 require 'spec_helper'
 require 'swiftfake/source_kit_parser'
 
-describe Swiftfake::SourceKitParser::FunctionsParser do
+describe Swiftfake::SourceKitParser::FunctionParser do
 
   def parse_line(line)
-    described_class.new([line]).parse.first
+    described_class.new.parse(line)
   end
 
   describe '#parse' do
     describe 'function attributes' do
       let(:line) { '  internal func internalFunc()'  }
-      subject { described_class.new([line]).parse.first }
+      subject { described_class.new.parse(line) }
 
       it 'has the full name, stripped of whitespace' do
         expect(subject.full_name).to eq 'internal func internalFunc()'
@@ -35,12 +35,12 @@ describe Swiftfake::SourceKitParser::FunctionsParser do
 
     describe 'function arguments' do
       def parse_first_arg(line)
-        described_class.new([line]).parse.first.arguments.first
+        described_class.new.parse(line).arguments.first
       end
 
       it 'parses no arguments' do
         line = 'internal func internalFunc()'
-        args = described_class.new([line]).parse.first.arguments
+        args = described_class.new.parse(line).arguments
         expect(args).to eq([])
       end
 
@@ -77,7 +77,7 @@ describe Swiftfake::SourceKitParser::FunctionsParser do
 
     describe 'function return value' do
       def parse_return(line)
-        described_class.new([line]).parse.first.return_value
+        described_class.new.parse(line).return_value
       end
 
       it 'returns nil if the function has no return value' do
@@ -120,8 +120,11 @@ describe Swiftfake::SourceKitParser::FunctionsParser do
           'private func privateFunc()'
         ]
 
-        parser = described_class.new(unwanted_funcs + wanted_funcs)
-        expect(parser.parse.count).to eq(wanted_funcs.count)
+        parsedFunctions = (unwanted_funcs + wanted_funcs)
+          .map{ |f| described_class.new.parse(f) }
+          .compact
+
+        expect(parsedFunctions.count).to eq(wanted_funcs.count)
       end
     end
   end

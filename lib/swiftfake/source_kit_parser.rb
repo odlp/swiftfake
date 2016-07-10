@@ -42,7 +42,9 @@ module Swiftfake
         .map{|method| find_raw_method_decl(method) }
         .compact
 
-      FunctionsParser.new(function_declarations).parse
+      function_declarations
+        .map {|f| FunctionParser.new.parse(f) }
+        .compact
     end
 
     def find_raw_method_decl(method)
@@ -55,41 +57,34 @@ module Swiftfake
       source_file[start_offset...end_offset]
     end
 
-    class FunctionsParser
-      attr_reader :function_lines
+    class FunctionParser
 
-      def initialize(function_lines)
-        @function_lines = function_lines
-      end
+      def parse(function_line)
+        return nil unless can_override?(function_line)
 
-      def parse
-        overridable_functions.map do |line|
-          /func (?<name>.*)\(/ =~ line
-          /(?<access>public|internal|private)/ =~ line
-          /->\s(?<return_value>.+)$/ =~ line
+        /func (?<name>.*)\(/ =~ function_line
+        /(?<access>public|internal|private)/ =~ function_line
+        /->\s(?<return_value>.+)$/ =~ function_line
 
-          return_value.strip! unless return_value.nil?
+        return_value.strip! unless return_value.nil?
 
-          SwiftFunction.new(
-            full_name: line.strip,
-            name: name,
-            access: access,
-            arguments: parse_args(line),
-            return_value: return_value
-          )
-        end
+        SwiftFunction.new(
+          full_name: function_line.strip,
+          name: name,
+          access: access,
+          arguments: parse_args(function_line),
+          return_value: return_value
+        )
       end
 
       private
 
-      def overridable_functions
-        function_lines.select do |l|
-          !l.include?('final') && !l.include?('private')
-        end
+      def can_override?(function_line)
+        !function_line.include?('final') && !function_line.include?('private')
       end
 
-      def parse_args(line)
-        /func .*\((?<raw_args>.+)\)/ =~ line
+      def parse_args(function_line)
+        /func .*\((?<raw_args>.+)\)/ =~ function_line
         return [] if raw_args.nil?
 
         raw_args
