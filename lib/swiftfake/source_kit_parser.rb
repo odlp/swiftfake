@@ -47,13 +47,11 @@ module Swiftfake
 
     def find_raw_method_decl(method)
       start_offset = method["key.offset"]
-      name_offset = method["key.nameoffset"]
-      name_length = method["key.namelength"]
+      end_offset = method["key.bodyoffset"]
 
-      return nil if start_offset.nil? || name_offset.nil? || name_length.nil?
+      return nil if start_offset.nil? || end_offset.nil?
 
-      end_offset = name_offset + name_length
-
+      end_offset -= 1
       source_file[start_offset...end_offset]
     end
 
@@ -69,6 +67,8 @@ module Swiftfake
           /func (?<name>.*)\(/ =~ line
           /(?<access>public|internal|private)/ =~ line
           /->\s(?<return_value>.+)$/ =~ line
+
+          return_value.strip! unless return_value.nil?
 
           SwiftFunction.new(
             full_name: line.strip,
