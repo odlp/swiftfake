@@ -8,7 +8,7 @@ Generate test fakes from Swift code. The fakes allow you to:
 - Verify what arguments were received
 - Return a canned value
 
-## Usage
+## Creating fakes
 
 Pass a Swift file path and the fake will be printed to STDOUT:
 
@@ -26,6 +26,11 @@ swiftfake ./app/MySwiftClass.swift | pbcopy
 swiftfake ./app/MySwiftClass.swift > ./test/FakeMySwiftClass.swift
 ```
 
+## Using the fakes
+
+
+
+
 ## Requirements
 
 - Ruby 2.1+ (run `ruby -v` to check)
@@ -38,6 +43,7 @@ This gem is still in an alpha state.
 Roadmap:
 
 - Copy across @import statements from source
+- Template overrides
 - Fake Protocol implementations
 - Implement Bright Futures support
 - Handling multiple classes/protocols in the Swift source file
