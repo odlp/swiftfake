@@ -27,14 +27,15 @@ swiftfake ./app/MySwiftClass.swift > ./test/FakeMySwiftClass.swift
 ## Requirements
 
 - Ruby 2.1+ (run `ruby -v` to check)
-- Swift compiler - ships with XCode (run `which swiftc` to check)
+- (SourceKitten)[https://github.com/jpsim/SourceKitten] (`brew install sourcekitten`)
 
 ## Notes
 
-This gem is still WIP.
+This gem is still in an alpha state.
 
 Roadmap:
 
-- Protocol support
-- Futures support
-- Handling multiple classes in the Swift source file
+- Copy across @import statements from source
+- Fake Protocol implementations
+- Implement Bright Futures support
+- Handling multiple classes/protocols in the Swift source file

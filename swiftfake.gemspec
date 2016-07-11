@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["oliverp@gmail.com"]
 
   spec.summary       = "Generate test fakes from Swift code."
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/odlp/swiftfake"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
