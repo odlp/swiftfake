@@ -1,5 +1,7 @@
 # Swiftfake
 
+[![Gem Version](https://badge.fury.io/rb/swiftfake.svg)](https://badge.fury.io/rb/swiftfake)
+
 Generate test fakes from Swift code. The fakes allow you to:
 
 - Verify how many times a function was called
@@ -27,7 +29,7 @@ swiftfake ./app/MySwiftClass.swift > ./test/FakeMySwiftClass.swift
 ## Requirements
 
 - Ruby 2.1+ (run `ruby -v` to check)
-- (SourceKitten)[https://github.com/jpsim/SourceKitten] (`brew install sourcekitten`)
+- [SourceKitten](https://github.com/jpsim/SourceKitten) (`brew install sourcekitten`)
 
 ## Notes
 
