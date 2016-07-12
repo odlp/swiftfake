@@ -19,7 +19,8 @@ describe Swiftfake::Presenter do
     Swiftfake::SwiftClass.new(
       name: 'SomeClass',
       access: 'public',
-      functions: functions
+      functions: functions,
+      imports: ['import Foundation', 'import UIKit']
     )
   }
 
@@ -30,6 +31,28 @@ describe Swiftfake::Presenter do
 
     it 'includes the access, fake class name, and inheritance' do
       expect(subject).to eq('public class FakeSomeClass: SomeClass')
+    end
+  end
+
+  describe '#import_statements' do
+    subject { presenter.import_statements }
+
+    it 'joins the imports from the class with newlines' do
+      expect(subject).to eq("import Foundation\nimport UIKit")
+    end
+
+    it 'returns an empty string when there are no imports' do
+      no_imports = Swiftfake::SwiftClass.new(
+        name: 'SomeClass',
+        access: 'public',
+        functions: functions,
+        imports: []
+      )
+
+      presenter = described_class.new(no_imports)
+
+      expect(presenter.import_statements).to eq("")
+      expect(presenter.import_statements.empty?).to eq(true)
     end
   end
 

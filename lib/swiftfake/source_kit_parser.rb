@@ -14,7 +14,8 @@ module Swiftfake
       SwiftClass.new(
         name: class_name,
         access: access_level,
-        functions: parse_functions
+        functions: parse_functions,
+        imports: imports
       )
     end
 
@@ -27,6 +28,12 @@ module Swiftfake
     def access_level
       raw_accessibility = first_entity.fetch("key.accessibility", nil)
       raw_accessibility.split('.').last unless raw_accessibility.nil?
+    end
+
+    def imports
+      source_file
+        .split("\n")
+        .select{ |line| line.start_with? 'import' }
     end
 
     def first_entity

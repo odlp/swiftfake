@@ -16,6 +16,10 @@ module Swiftfake
       "#{swift_class.access} class Fake#{swift_class.name}: #{swift_class.name}"
     end
 
+    def import_statements
+      swift_class.imports.join("\n")
+    end
+
     def functions
       @functions ||= swift_class.functions.map { |f| f.extend(FunctionDecorator) }
     end

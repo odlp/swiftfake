@@ -2,19 +2,19 @@
   "key.substructure" : [
     {
       "key.kind" : "source.lang.swift.decl.class",
-      "key.offset" : 0,
-      "key.nameoffset" : 6,
+      "key.offset" : 32,
+      "key.nameoffset" : 38,
       "key.namelength" : 10,
-      "key.bodyoffset" : 18,
+      "key.bodyoffset" : 50,
       "key.bodylength" : 28,
       "key.accessibility" : "source.lang.swift.accessibility.internal",
       "key.substructure" : [
         {
           "key.kind" : "source.lang.swift.decl.function.method.instance",
-          "key.offset" : 24,
-          "key.nameoffset" : 29,
+          "key.offset" : 56,
+          "key.nameoffset" : 61,
           "key.namelength" : 7,
-          "key.bodyoffset" : 38,
+          "key.bodyoffset" : 70,
           "key.bodylength" : 5,
           "key.accessibility" : "source.lang.swift.accessibility.internal",
           "key.length" : 20,
@@ -28,5 +28,5 @@
   ],
   "key.offset" : 0,
   "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
-  "key.length" : 48
+  "key.length" : 80
 }

@@ -15,6 +15,11 @@ describe Swiftfake::SourceKitParser do
       expect(subject.access).to eq('internal')
     end
 
+    it 'parses the import statements from the source' do
+      expect(subject.imports)
+        .to contain_exactly('import Foundation', 'import UIKit')
+    end
+
     it 'parses the functions' do
       expect(subject.functions.count).to eq(1)
       expect(subject.functions.first.full_name)
@@ -82,11 +87,11 @@ describe Swiftfake::SourceKitParser do
       end
     end
 
-    context 'different function types' do
+    describe 'filtering function types' do
       let(:source_file)     { File.read('spec/examples/AllFuncsClass.swift') }
       let(:raw_structure_json)  { File.read('spec/examples/AllFuncsClass.json') }
 
-      it 'filters out private / final functions' do
+      it 'ignores private / final functions' do
         access_levels = subject.functions.map {|f| f.access }
         full_names = subject.functions.map {|f| f.full_name }
 
