@@ -7,7 +7,6 @@ Gem::Specification.new do |spec|
   spec.name          = "swiftfake"
   spec.version       = Swiftfake::VERSION
   spec.authors       = ["odlp"]
-  spec.email         = ["oliverp@gmail.com"]
 
   spec.summary       = "Generate test fakes from Swift code."
   spec.homepage      = "https://github.com/odlp/swiftfake"
